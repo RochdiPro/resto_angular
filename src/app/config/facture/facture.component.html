@@ -1,0 +1,74 @@
+<h1
+  style="text-align: center;margin-top: 3%;margin-bottom: 6%; text-shadow: 2px 4px 3px rgba(0,0,0,0.3); font-size: 300%;">
+  Factures</h1>
+ 
+
+  <div class="position-relative custom-control"  >
+  <section [formGroup]="form"> 
+
+    <mat-form-field style="   margin-left: 2%;  width: 13%;">
+        <mat-label> ID </mat-label> 
+        <input matInput placeholder="id" formControlName="id" (keyup)="filtre()"  >    
+    </mat-form-field>
+
+    <mat-form-field style="   margin-left: 2%;  width: 13%;">
+        <mat-label> Client </mat-label> 
+        <input matInput placeholder="client" formControlName="client" (keyup)="filtre()"  >    
+    </mat-form-field>    
+    
+    <mat-form-field style="margin-left: 2%; width: 13%;">
+        <mat-label> Date </mat-label>
+        <input matInput [matDatepicker]="picker2"  formControlName="date" (dateChange)="filtre()">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+        <mat-error *ngIf="form.get('date').invalid">
+          Date   </mat-error>
+    </mat-form-field> 
+  </section>
+</div>  
+
+ 
+<div class="mat-elevation-z8" style="width: 98%; height: 500px;overflow-y: scroll;">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+     <!--Colonne responsable -->
+     <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> id </mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="id"> {{element.id}}</mat-cell>
+    </ng-container>
+
+
+      <!--Colonne Ancien ID -->
+      <ng-container matColumnDef="utilisateur">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Client  </mat-header-cell>
+          <mat-cell *matCellDef="let element"  > {{element.client}} </mat-cell>
+      </ng-container>
+
+       <!--Colonne Réclamation -->
+       <ng-container matColumnDef="etat">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Date  </mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="role"> {{element.date |  date: 'dd/MM/yyyy - HH:mm'}} </mat-cell>
+    </ng-container>
+
+      <!--Colonne Réclamation -->
+      <ng-container matColumnDef="total">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Total  </mat-header-cell>
+          <mat-cell *matCellDef="let element" data-label="role"> {{element.prix}} </mat-cell>
+      </ng-container>
+
+      
+      <!--Colonne supprimer -->
+      <ng-container matColumnDef="sup">
+          <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+          <mat-cell *matCellDef="let element" style="text-align: center;" data-label=" ">   
+              <i class="pe-7s-print"   title="pdf" (click)="imprimer_pdf(element.id)"
+                  style="color: red;  margin-left: 15px;">
+              </i> 
+          </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[8,50,100]" showFirstLastButtons></mat-paginator>
+</div>

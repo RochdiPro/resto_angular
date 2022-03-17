@@ -1,0 +1,54 @@
+<div mat-dialog-actions >
+    <button  style="margin-left: 80%;" mat-button class="btn btn-default " (click)="fermerDialogue()">Fermer</button>
+   
+    <button style="margin-left: 5%;" mat-button class="btn btn-primary " (click)="valide()" >Valider</button>
+</div>
+<div class="container">
+    <div mat-dialog-content>
+        <h1 class="col-xs-8 text-center" mat-dialog-title>Réglement</h1>
+        <h2 style="color: red; text-align: left;"   mat-dialog-title>Montant {{total}} DT</h2>
+        <h3 style="color: red; text-align: right;"   mat-dialog-title>Reste {{rest}} DT</h3>
+        <h3 style="color: red; text-align: right;"   mat-dialog-title>Retour {{retour}} DT</h3>
+
+&nbsp;
+&nbsp;
+<div class="container">
+    <div mat-dialog-content>
+        <i class="fas fa-plus"  (click)="add()"></i>
+
+        <table class="table table-striped ">
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Mode de paiement</th>
+                    <th style="width: 20%;">Montant</th>
+                    <th style="width: 60%;">Info</th>
+                     
+                </tr>
+            </thead>
+            <tbody>
+            <tbody *ngFor="let qte of this.table;let i = index;">
+                <tr>                     
+                    <td>
+                        <select  (change)="savemode(i,$event)" >
+                            <option value="especes">espèces</option>
+                            <option value="ticket">ticket</option>
+                            <option value="Cheque">Chèque</option>
+                        </select>
+                     </td>
+                    <td   > 
+                        <input type="number" placeholder=" " value="{{this.table[i].montant}}" (keyup)="savenmontant(i,$event)" />
+                    </td>                   
+                    <td   >  
+  
+                        <input type="text" placeholder=" " value="{{this.table[i].info}}" (keyup)="saveinfo(i,$event)"  width="100%"/>
+                    </td>
+                     
+                    <td>
+                        <i class="fas fa-trash-alt"  (click)="supp(i)"></i>
+                    </td>
+                  
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

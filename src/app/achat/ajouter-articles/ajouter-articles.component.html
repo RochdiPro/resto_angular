@@ -1,0 +1,92 @@
+
+<div class="container" mat-dialog-content style="margin-top: 1%;">
+  <br>
+  <div [formGroup]="form">
+    
+      <mat-form-field  >
+        <mat-label>Filtrer par Code</mat-label>
+        <input matInput formControlName="code"  [matKeyboard]="'de-CH'" (keyup)="filtre()" width="10px">
+        <i matSuffix class="fa fa-filter" aria-hidden="true"></i>
+      </mat-form-field>
+   
+      <mat-form-field class="custom-width">
+        <mat-label>Filtrer par Nom</mat-label>
+        <input matInput formControlName="nom"  [matKeyboard]="'de-CH'" (keyup)="filtre()">
+        <i matSuffix class="fa fa-filter" aria-hidden="true"></i>
+      </mat-form-field>
+ 
+    
+      <mat-form-field>
+        <mat-label> Filtrer par Catégorie </mat-label>
+        <mat-select (selectionChange)="choix_categorie($event)" formControlName="categorie" aria-placeholder="kg">
+          <mat-option *ngFor="let obj of liste_categorie" [value]="obj.id"> {{obj.nom}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+     
+
+  </div>
+  <div class="row">
+    <mat-progress-bar mode="indeterminate" *ngIf='loading'></mat-progress-bar>
+    <!-- Lignes d'article  -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th>code </th>
+          <th>Nom </th>
+          <th>Catégorie </th>
+          <th>Qte</th>
+          <th>Prix_HT</th>
+          <th>TVA</th>
+          <th>Prix_TTC</th>
+          <th>T_TTC</th>
+        
+        </tr>
+      </thead>
+      <tbody>
+
+       
+        <tr *ngFor="let item of prouduits ">
+          <td><input type="checkbox" name="item" (change)="checkCheckBoxvalue($event,item)" /></td>
+          <td>
+            <input [ngModel]="item.code" [ngModelOptions]="{standalone: true}" [matKeyboard]="'de-CH'" class="form-control" type="text"
+              name="{{item.nom_Produit}}" disabled />
+          </td>
+          <td>
+            <input [ngModel]="item.nom" [ngModelOptions]="{standalone: true}"  [matKeyboard]="'de-CH'" class="form-control" type="text"
+              name="{{item.nom_Produit}}" disabled />
+          </td>
+          <td>
+            <input [ngModel]="item.categorie.nom" [ngModelOptions]="{standalone: true}" [matKeyboard]="'de-CH'" class="form-control" type="text"
+              disabled size="1" />
+          </td>
+         
+          <td>
+            <input [ngModel]="item.qte" [ngModelOptions]="{standalone: true}" [matKeyboard]="'de-CH'" class="form-control" type="number"
+              (keyup)="changer_qte($event,item)" size="1" />
+          </td>
+          <td>
+            <input [ngModel]="item.prix" [ngModelOptions]="{standalone: true}" [matKeyboard]="'de-CH'" class="form-control" type="number"
+              (keyup)="changer_prix($event,item)" size="1" />
+          </td>
+          <td>
+             {{item.tva}}  
+          </td>
+          <td>
+            <input [ngModel]="item.prix_ttc" [ngModelOptions]="{standalone: true}"[matKeyboard]="'de-CH'"  class="form-control" type="number"
+              (keyup)="changer_prix_ttc($event,item)" size="1"  />
+          </td>
+          <td>
+            <input [ngModel]="item.total_ttc" [ngModelOptions]="{standalone: true}" [matKeyboard]="'de-CH'" class="form-control" type="number"
+               size="1" disabled />
+          </td>
+        </tr>
+      </tbody> 
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+ 
+</div>
+ 
+  <button mat-raised-button class="add-article" style="position: fixed; margin-left: 60%; margin-top: 0px;" (click)="sendProd()" ><i  class="fas fa-plus"></i> Ajouter Article</button> 
+ 

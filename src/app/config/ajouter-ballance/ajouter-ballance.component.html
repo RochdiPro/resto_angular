@@ -1,0 +1,50 @@
+<h1 style="text-align: center;margin-top: 3%;margin-bottom: 2%; text-shadow: 2px 4px 3px rgba(0,0,0,0.3); font-size: 300%;">
+    Ballance</h1>
+
+<nav class="navbar navbar-expand-sm bg-light justify-content-center" style="margin-bottom: 5%;">
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Vente</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" style=" margin-left: 20%;">Achat</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" style=" margin-left: 20%;">Configuration</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" style=" margin-left: 20%;">Caisse</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" style=" margin-left: 20%;">Ticket</a>
+        </li>
+    </ul>
+</nav>
+
+
+<div class="row">
+     
+    <div class="col-md-12">
+        <div class="card-body">
+            <form class="needs-validation" novalidate [formGroup]="produit">
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <label for="validationCustom01">Nom</label>
+                        <input type="text" formControlName="nom" class="form-control" placeholder="Nom" required>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="validationCustom02">IP </label>
+                        <input type="text" class="form-control" formControlName="categorie" placeholder="IP"
+                            required>
+                    </div>
+                </div>
+              
+                <br>    
+                <button class="btn btn-primary" style="margin-left: 80%;" type="submit">Ajouter</button>
+            </form>
+
+        </div>
+    </div>
+
+</div>

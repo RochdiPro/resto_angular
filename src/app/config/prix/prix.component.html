@@ -1,0 +1,110 @@
+ 
+
+  <h1
+  style="text-align: center;margin-top: 3%;margin-bottom: 6%; text-shadow: 2px 4px 3px rgba(0,0,0,0.3); font-size: 300%;">
+  Gestion des Prix</h1>
+ 
+
+  <div class="position-relative custom-control" style="margin-left: 5%;">
+  <section [formGroup]="form">
+    <mat-form-field class="custom-width" style="width: 5%;"  >
+      <mat-label>ID</mat-label>
+      <input matInput placeholder="ID" formControlName="id" (keyup)="filtre()" id="id">
+     </mat-form-field>
+    <mat-form-field class="custom-width"  style=" width: 10%; margin-left: 2%;" >
+      <mat-label>Nom</mat-label>
+      <input matInput placeholder="Nom" formControlName="nom" (keyup)="filtre()" id="id">
+     </mat-form-field>
+     <mat-form-field class="custom-width"  style=" width: 13%; margin-left: 2%;">
+      <mat-label>Code a barre</mat-label>
+      <input matInput placeholder="216548" formControlName="code" (keyup)="filtre ()" id="id">
+     </mat-form-field>
+     <mat-form-field style=" width: 13%; margin-left: 2%;">
+      <mat-label> Catégorie </mat-label>
+      <mat-select (selectionChange)="choix_categorie($event)" formControlName="unite" aria-placeholder="kg"   >
+          <mat-option *ngFor="let obj of liste_categorie" [value]="obj.id">    {{obj.nom}}</mat-option>
+      </mat-select>       
+     </mat-form-field>
+
+    <mat-form-field style=" width: 13%; margin-left: 2%;">
+      <mat-label> Unité </mat-label>
+      <mat-select (selectionChange)="choix_unite($event)" formControlName="unite" aria-placeholder="kg"  >
+          <mat-option *ngFor="let obj of liste_unite" [value]="obj.id">  {{obj.nom}}</mat-option>
+      </mat-select>      
+  </mat-form-field> 
+ 
+  </section>
+</div>  
+
+ 
+<div class="mat-elevation-z8" style="width: 98%;  height: 500px;overflow-y: scroll;">
+  <table mat-table [dataSource]="dataSource" matSort>
+       
+
+      <!--Colonne id -->
+      <ng-container matColumnDef="Image">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Image </mat-header-cell>
+          <!-- <mat-cell *matCellDef="let element" data-label="ID" > {{element.id_Fr}} </mat-cell>   -->
+          <mat-cell *matCellDef="let element" data-label="Image">
+              <img src="data:image/png;base64,{{element.image}}"
+                  style="height: 50px;width: 50px;margin-top: 2px; margin-bottom: 2px;" />
+          </mat-cell>
+      </ng-container>
+      <!--Colonne responsable -->
+      <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> id </mat-header-cell>
+          <mat-cell *matCellDef="let element" data-label="id"> {{element.id}}</mat-cell>
+      </ng-container>
+
+      <!--Colonne Ancien ID -->
+      <ng-container matColumnDef="nom">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Nom  </mat-header-cell>
+          <mat-cell *matCellDef="let element" data-label="Nom Client"> {{element.nom}} </mat-cell>
+      </ng-container>
+      <!--Colonne Réclamation -->
+      <ng-container matColumnDef="categorie">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Categorie  </mat-header-cell>
+          <mat-cell *matCellDef="let element" data-label="Categorie"> {{element.categorie.nom}} </mat-cell>
+      </ng-container>
+
+      <!--Colonne Réclamation -->
+      <ng-container matColumnDef="unite">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Unité </mat-header-cell>
+          <mat-cell *matCellDef="let element" data-label=" Unité"> {{element.unite.nom}} </mat-cell>
+      </ng-container>
+
+      <!--Colonne email -->
+      <ng-container matColumnDef="prix_achat">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> prix Achat HT PMP </mat-header-cell>
+          <mat-cell *matCellDef="let element" data-label="Valeur"> {{element.prix_achat}} </mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="prix_vente">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Prix Vente HT </mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Prix"> 
+            <img src="./../../../assets/images/icon.png" width="30px" (click)="prix(element.id)" style="margin-right: 15px;"> {{element.prix_vente}}
+    
+        </mat-cell>
+ 
+    </ng-container>
+
+    <ng-container matColumnDef="tva">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> %TVA </mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Valeur"> {{element.tva}}% </mat-cell>
+
+ 
+    </ng-container>
+        
+    <ng-container matColumnDef="prix_vente_ttc">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Prix Vente TTC </mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Prix">
+            <img src="./../../../assets/images/icon.png" width="30px" (click)="prix_ttc(element.id , element.tva)" style="margin-right: 15px;"> {{element.prix_vente_ttc}}  </mat-cell>
+ 
+    </ng-container>
+       
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10,50,100]" showFirstLastButtons></mat-paginator>
+</div>

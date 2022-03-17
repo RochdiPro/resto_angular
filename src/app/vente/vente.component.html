@@ -1,0 +1,158 @@
+ 
+<div class="row">
+  <div class="col-md-7">
+    <div class=" col-md-12 main-card mb-3 card" style="margin-top:  2%;">
+      <div class="card-body">
+        <ul   class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">     
+          <li  *ngFor="let obj of liste_categorie" class="nav-item">
+            <a role="tab" class="nav-link active " *ngIf=" (choix == obj.nom)">
+              <span>{{obj.nom}} </span>
+            </a>
+            <a role="tab" (click)="filtre_cat(obj.nom,obj.id)" class="nav-link " *ngIf=" !(choix ==  obj.nom)">
+              <span>{{obj.nom}} </span>
+            </a>
+          </li>
+        </ul> 
+      </div>       
+    </div> 
+      <div  fxFill fxLayout="column" fxLayoutAlign="space-between" fxLayout="row wrap">
+        <ng-container *ngFor="let obj of data">
+          <div class="col-md-2  main-card mb-2 card " style="margin-left: 1%; margin-top: 1%;     ">
+            <div width="100%" style="text-align: center; margin-top: 6%;  " (click)="ajouter_table(obj)"> 
+              <p style="margin-top: 10%;text-align: left;  ">{{obj.nom}}</p>
+              <img src="data:image/png;base64,{{obj.image}}" width="50px" height="50px" />
+                <h3 style="text-align: right;">{{obj.prix_vente}} DT</h3>                        
+            </div>
+          </div> 
+        </ng-container>
+      </div>
+
+      <mat-paginator [length]="data2.length" [pageSize]="size" [pageIndex]="page" [pageSizeOptions]="[8,12,24,48,100]"
+        (page)="getData($event)">
+      </mat-paginator>
+
+  </div>
+
+  <div class="col-md-4  mb-12 card" style="margin-top: 1%;">
+    
+    <div class="card-body">       
+      <div class="row" >
+        <section [formGroup]="form">
+          <mat-form-field style=" width: 25%; ">
+            <mat-label> Catégorie </mat-label>
+            <mat-select (selectionChange)="choix_categorie($event)" formControlName="unite" aria-placeholder="kg">
+              <mat-option  value=""> </mat-option>
+              <mat-option *ngFor="let obj of liste_categorie" [value]="obj.id"> {{obj.nom}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="custom-width" style="width: 30%;  " >
+            <mat-label>Nom</mat-label>
+            <input matInput placeholder="Nom" formControlName="nom"  [matKeyboard]="'de-CH'" (keyup)="filtre()" id="id">
+            <mat-error>Nom</mat-error>
+
+          </mat-form-field>
+ 
+          <mat-form-field class="custom-width" style=" width: 30%; margin-left: 4%; ">
+            <mat-label>Code a barre</mat-label>
+            <input matInput placeholder="216548"   [(ngModel)]="vide_code_bare" formControlName="code" [matKeyboard]="'de-CH'"  (keypress)="ajouter_article_code_a_barre ($event)"   id="id">
+          </mat-form-field>
+          
+        </section>
+      </div>
+    </div>
+    <div class="col-md-12  mb-12 card">
+     <h3>Client : {{clt}}</h3>
+
+    <h3 style="color: red; text-align: right;">Total TTC : {{total}} DT</h3> 
+    <div class='table' style="margin-top: 5%;">
+      <div class='row2'>
+         <div class='cell1 table-wrapper-scroll-y my-custom-scrollbar'>
+          <table class="table table-striped ">
+            <thead>
+              <tr>
+                <th>Qte</th>
+                <th>Nom</th> 
+                <!-- <th>Unite</th>  -->
+                <th>Prix_U</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let obj of table; let i = index; ">
+                <td >
+                  <input type="number" [matKeyboard]="'de-CH'"  value="{{obj.qte_v}}" placeholder="{{obj.qte}}" (keyup)="calcule($event,obj)" style="width: 30px;"> 
+                </td>
+                <td  > 
+                  {{obj.nom}} 
+                 </td>
+                 <!-- <td  > 
+                   {{obj.valeur_Unite}} {{obj.unite.nom}}
+                 </td> -->
+                 <td>
+                  {{obj.prix_vente}}
+                 </td>
+                 <td>
+                  {{obj.prix}}
+                 </td>
+                <td>
+                  <i  style="color: red;" class="pe-7s-trash" (click)="supprimer(i , obj.prix)" title="Supprimer"></i>
+                </td>
+              </tr>               
+            </tbody>
+           
+            
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+
+  <div class="col-md-1">
+    <nav style="height:100%; width: 100%;">
+
+      <ul class="nav flex-column" style="margin-top: 20%;">
+        <li class="nav-item" title="Menu"  style="width: 70%;">
+          <a class="nav-link" (click)="mode()" ><img src="../../assets/images/menu-racor.png" width="70%"
+              height="100%" style="margin-left: 20%;"></a>
+        </li>
+
+        <li class="nav-item" title="Utilisateur" style="width: 50%; text-align: center;margin-top: 10%; margin-left: 12%;">
+       
+          <a class="nav-link" routerLink="/vente"><img src="./../../assets/images/sess-save.png" width="100%"
+              height="100%">  </a>
+              <h3 >{{this.user.nom}}</h3>
+        </li>       
+        <li class="nav-item"  style="width: 70%; text-align: center;margin-top: 1%;">       
+          <a class="nav-link" (click)="open_cash_drawer()"><img src="./../../assets/images/caisse.png" width="100%"
+              height="100%">  </a>
+              <h3 >{{session[0].caisse.nom}}</h3>
+        </li> 
+        <li class="nav-item"   style="width: 50%;margin-top: 10%;margin-left: 15%;">       
+          <a class="nav-link"  title="modifier ticket" (click)="modifier_ticket()"><img src="./../../assets/images/edit_ticket.png"  width="100%"
+              height="100%">  </a>
+         </li>
+        <li   *ngIf="btn_valide" class="nav-item" title="Valider" style="width: 50%;margin-top: 30%;margin-left:15% ;">
+          <a class="nav-link" (click)="valide_achat()"><img src="./../../assets/images/affecter.jpg" width="100%"
+              height="100%"></a>
+        </li>
+        <li  *ngIf="valide"  (click)="reglement()" class="nav-item" title="réglement" style="width: 70%;margin-top: 30%; margin-left:10%">
+          <a class="nav-link" routerLink="/vente"><img src="./../../assets/images/argent.jpg" width="100%"
+              height="100%"></a>
+        </li>
+        <li *ngIf="payee" class="nav-item" title="ticket" style="width: 70%;margin-top: 30%; margin-left:10% ">
+          <a class="nav-link" (click)="generate_ticket()"  ><img src="./../../assets/images/ticket.png" width="100%"
+              height="100%"></a>
+        </li>
+        <li *ngIf="payee" class="nav-item" title="Facture" style="width: 70%;margin-top: 30%; margin-left:10%">
+          <a class="nav-link" (click)="facture()"  ><img src="./../../assets/images/logiciel-facturation.jpg" width="100%"
+              height="100%"></a>
+        </li>
+       
+       
+      </ul>
+    </nav>
+  </div>
+</div>

@@ -1,0 +1,153 @@
+<div class="bg"  >
+
+	<div class="container img">
+		<div class="d-flex justify-content-center h-100" style="margin-top: 10%;">
+			<div   style="margin-top: 6%; height: 15px;">
+					 
+				<div class="nav">
+					<a data-toggle="tab" href="#tab-eg2-0"
+						class="btn-pill btn-wide active btn btn-outline-alternate btn-sm" style="background-color:#f08e01">Authentification </a>
+					<a data-toggle="tab" href="#tab-eg2-1"
+						class="btn-pill btn-wide mr-1 ml-1  btn btn-outline-alternate btn-sm" style="background-color:#f08e01">Code  </a> 
+				</div>
+				<div class="main-card mb-3 card" style="margin-top: 2%;"  >
+					<div class="card-body">
+						<div class="tab-content">
+							<div class="tab-pane active " id="tab-eg2-0" role="tabpanel">
+								<div class="row">
+									<div class="col-md-8" >
+										<form [formGroup]="cnx">
+											<div class="input-group form-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text"><i class="fas fa-user"></i></span>
+												</div>
+												<input formControlName="id" type="text" class="form-control" placeholder=""
+													[matKeyboard]="''">
+											</div>
+											<div class="input-group form-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text"><i class="fas fa-key"></i></span>
+												</div>
+												<input formControlName="pwd" type="password" class="form-control" placeholder=""
+													[matKeyboard]="'de-CH'">
+											</div> 
+										</form>
+									</div>
+									<div class="col-md-4" >
+										 
+											<input type="submit" *ngIf='!(cercle)' value="Connecter" class="btn"
+												style="width: 100%; height: 90%;  background-color: #f08e01; " (click)="connexion()">
+				
+											<mat-spinner mode="indeterminate" *ngIf='cercle' style="margin-left:35%"></mat-spinner>
+				
+										 
+									</div>
+								</div>
+							
+								
+							</div>
+							<div class="tab-pane" id="tab-eg2-1" role="tabpanel">
+								<form [formGroup]="cnx">
+					 
+								 
+									<div class="input-group form-group" style="margin-top: 7%">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i class="fas fa-key"></i></span>
+										</div>
+										<input style formControlName="pwd" type="password" class="form-control" placeholder=""
+											[matKeyboard]="'de-CH'">
+									</div>
+			
+									<div class="form-group"> 
+										<mat-spinner mode="indeterminate" *ngIf='cercle' style="margin-left:35%"></mat-spinner>
+			
+									</div>
+								</form>
+							</div>
+							 
+						</div>
+					</div>
+					 
+				</div>
+			</div>
+			<br>
+			
+		</div>
+	</div>
+</div>
+<!-- 
+<div>
+	<div class="container">
+		<div class="d-flex justify-content-center h-100">
+			<div class="main-card mb-3 card">
+				<div class="card-header" style="height: 30%; "> 
+					<img src="./../../assets/images/avatar.png" width="20%" style="  margin-right: auto;">
+					<div class="btn-actions-pane-right">
+						<div class="nav">
+							<a data-toggle="tab" href="#tab-eg2-0"
+								class="btn-pill btn-wide active btn btn-outline-alternate btn-sm">Authentification </a>
+							<a data-toggle="tab" href="#tab-eg2-1"
+								class="btn-pill btn-wide mr-1 ml-1  btn btn-outline-alternate btn-sm">Code  </a> 
+						</div>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="tab-content">
+						<div class="tab-pane active" id="tab-eg2-0" role="tabpanel">
+							<form [formGroup]="cnx">
+				 
+								<div class="input-group form-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="fas fa-user"></i></span>
+									</div>
+									<input formControlName="id" type="text" class="form-control" placeholder=""
+										[matKeyboard]="''">
+		
+								</div>
+								<div class="input-group form-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="fas fa-key"></i></span>
+									</div>
+									<input formControlName="pwd" type="password" class="form-control" placeholder=""
+										[matKeyboard]="'de-CH'">
+								</div>
+		
+								<div class="form-group">
+									<input type="submit" *ngIf='!(cercle)' value="Connecter" class="btn btn-success"
+										style="width: 100%; color: f08e01;" (click)="connexion()">
+		
+									<mat-spinner mode="indeterminate" *ngIf='cercle' style="margin-left:35%"></mat-spinner>
+		
+								</div>
+							</form>
+						</div>
+						<div class="tab-pane" id="tab-eg2-1" role="tabpanel">
+							<form [formGroup]="cnx">
+				 
+							 
+								<div class="input-group form-group" style="margin-top: 13%">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="fas fa-key"></i></span>
+									</div>
+									<input style formControlName="pwd" type="password" class="form-control" placeholder=""
+										[matKeyboard]="'de-CH'">
+								</div>
+		
+								<div class="form-group">
+									 
+		
+									<mat-spinner mode="indeterminate" *ngIf='cercle' style="margin-left:35%"></mat-spinner>
+		
+								</div>
+							</form>
+						</div>
+						 
+					</div>
+				</div>
+				 
+			</div>
+		</div>
+	</div>
+	<div style="height: 250px; background-color: aqua;">.  </div>	
+	<div style="height: 450px ; background-color :aquamarine"> . </div>	
+</div> -->

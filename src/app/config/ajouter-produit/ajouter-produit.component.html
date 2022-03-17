@@ -1,0 +1,103 @@
+<h1
+    style="text-align: center;margin-top: 3%;margin-bottom: 3%; text-shadow: 2px 4px 3px rgba(0,0,0,0.3); font-size: 600%;">
+    Produit</h1>
+ 
+
+<div class="row" style="margin-top: 5% ;">
+    <div class="col-md-6">
+       
+            <form class="needs-validation" novalidate [formGroup]="produit">
+                <div class="form-row">
+                    <input type="file" formControlName="image" (change)="change_image($event)">
+                    <img src="data:image/png;base64,{{imageSrc}}" width="400px" height="400px">  
+                </div>
+            </form>
+
+        
+    </div>
+    <div class="col-md-6">
+       
+            <form class="needs-validation" novalidate [formGroup]="produit">
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                         <mat-form-field>
+                            <mat-label for="rib1"> Nom </mat-label>
+                            <input  [(ngModel)]="formproduit.nom"  [matKeyboard]="'de-CH'" type="text" matInput formControlName="nom"  >
+                            <mat-error *ngIf="produit.get('nom').invalid">
+                                Nom  </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <mat-form-field>
+                            <mat-label> Catégorie : {{  formproduit.categorie.nom }} </mat-label>
+                            <mat-select    (selectionChange)="choix_categorie($event)" formControlName="unite" aria-placeholder="kg" required >
+                                <mat-option *ngFor="let obj of liste_categorie" [value]="obj.id">    {{obj.nom}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="produit.get('categorie').invalid">
+                                Catégorie  </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="col-md-12 mb-3">
+                        <mat-form-field>
+                            <mat-label> Unité :{{  formproduit.unite.nom }} </mat-label>
+                            <mat-select   [(ngModel)]="formproduit.unite"  (selectionChange)="choix_unite($event)" formControlName="unite" aria-placeholder="formproduit.unite.nom" required>
+                                
+                                <mat-option *ngFor="let obj of liste_unite" [value]="obj.id">
+                                    {{obj.nom}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="produit.get('unite').invalid">
+                                Unité  </mat-error>
+                        </mat-form-field>
+
+                         
+
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        
+
+                        <mat-form-field>
+                            <mat-label> Valeur Unité </mat-label>
+                            <input   [(ngModel)]="formproduit.valeur"  [matKeyboard]="'de-CH'"  matInput formControlName="valeur" required>
+                            <mat-error *ngIf="produit.get('unite').invalid">
+                                Valeur  </mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="col-md-12 mb-3">
+
+                        <mat-form-field>
+                            <mat-label for="rib1"> Code à barre </mat-label>
+                            <input   [(ngModel)]="formproduit.code" [matKeyboard]="'de-CH'"  matInput formControlName="code"  (keyup)="check_code()"  required>
+                        </mat-form-field>
+                        <mat-error *ngIf="produit.get('tva').invalid">
+                            Tva  </mat-error>
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <mat-form-field>
+                            <mat-label> TVA :{{  formproduit.tva }} </mat-label>
+                            <mat-select   [(ngModel)]="formproduit.tva"  (selectionChange)="choix_tva($event)" formControlName="tva" aria-placeholder="formproduit.tva" required>
+                                <mat-option *ngFor="let obj of liste_tva" [value]="obj.taxe">    {{obj.taxe}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="produit.get('tva').invalid">
+                                Tva  </mat-error>
+                            <mat-label>  </mat-label> 
+                        </mat-form-field>
+
+                         
+
+                    </div>
+                </div>
+                <br>
+                <button class="btn btn-success" *ngIf="!(test)"style="margin-left: 80%;" (click)="Ajouter_produit()" type="submit">Ajouter</button>
+                <button class="btn btn-success" *ngIf="test" style="margin-left: 80%;" (click)="Modifier_produit()" type="submit">Modifier</button>
+
+            </form>
+
+      
+    </div>
+
+</div>

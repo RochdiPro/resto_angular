@@ -1,0 +1,58 @@
+
+<div class="row"  >
+
+    <div class="col-md-9">
+        <h2 style="text-align: center;" >Vente / Mois</h2>
+        <section [formGroup]="form">
+
+          <mat-form-field style=" width: 13%;  ">
+              <mat-label> Année  </mat-label>
+              <mat-select (selectionChange)="choix_anne($event)" formControlName="anne">
+                <mat-option   value="2022"> 2022</mat-option>
+                <mat-option   value="2023"> 2023</mat-option>
+                <mat-option   value="2024"> 2024</mat-option>
+                <mat-option   value="2025"> 2025</mat-option>
+                <mat-option   value="2026"> 2026</mat-option>
+                <mat-option   value="2027"> 2027</mat-option>
+                <mat-option   value="2028"> 2028</mat-option>
+                <mat-option   value="2029"> 2029</mat-option>
+                <mat-option   value="2030"> 2030</mat-option>
+              </mat-select>
+          </mat-form-field>
+  
+           
+  
+      </section>
+        <div style="display: block">
+          <canvas baseChart
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
+                  [legend]="barChartLegend"
+                  [chartType]="barChartType">
+          </canvas>
+        </div>
+      </div>
+    <div class="col-md-3">
+        <h2 style="text-align: center;  margin-top: 20%;" >Vente / Utilisateur</h2>
+
+        <div style="display: block">
+            <canvas baseChart
+            [data]="valeur"
+            [labels]="titre"
+            [chartType]="type2"></canvas>            
+          </div>
+
+          <h2 style="text-align: center; margin-top: 20%;" >Vente / Année </h2>
+
+          <div style="display: block">
+              <canvas baseChart
+                          [data]="valeur_annee"
+                          [labels]="titre_annee"
+                          [chartType]="type2"></canvas>
+            </div>
+    </div>
+</div>
+
+
+  

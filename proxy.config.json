@@ -1,0 +1,12 @@
+{
+    "/back/*":{
+        "target":"http://192.168.1.63:3333",
+        "secure":false,
+        "logLevel":"debug",         
+        "pathRewrite":
+        {
+            "^/back":""
+        }
+    }
+    
+}

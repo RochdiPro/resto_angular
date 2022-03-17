@@ -1,0 +1,49 @@
+a {
+    border: none;
+    padding: 0;
+    text-decoration: none;
+    border-radius: 10%;
+}
+img2 {
+    width: 6vw;
+    padding-top: -5%;
+    border-radius: 5%;
+    box-shadow: 2px 2px 2px #FFC312;
+}
+.menu {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    top: 20%;
+    left: 35%;
+ }
+.inline {
+    display: inline-flex;
+    align-items: center;
+    padding: 0% 2vw;
+}
+a,
+a:hover {
+    text-decoration: none;
+    color: #52595d;
+}
+ 
+
+ 
+ 
+
+  .card {display:inline-block;}
+
+  .my-custom-scrollbar {
+    position: relative;
+   // height: 220px;
+    overflow: auto;
+    }
+    .table-wrapper-scroll-y {
+    display: block;
+    }
+
+    @media print{ .doNotPrint{display:none !important;} } 
+
+
+ 

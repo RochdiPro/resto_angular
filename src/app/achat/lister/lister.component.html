@@ -1,0 +1,113 @@
+<h1
+  style="text-align: center;margin-top: 3%;margin-bottom: 6%; text-shadow: 2px 4px 3px rgba(0,0,0,0.3); font-size: 600%;">
+  Achats</h1>
+ 
+
+  <div class="position-relative custom-control"  >
+  <section [formGroup]="form"> 
+
+      <mat-form-field style="  width: 13%; margin-left: 2%;"> 
+        <mat-label> Type </mat-label>
+        <mat-select (selectionChange)="choix_type ($event)" formControlName="type" aria-placeholder=" "  >
+            <mat-option value="reçu"> Reçu </mat-option>
+            <mat-option value="bl"> BL</mat-option>
+            <mat-option value="facture"> Facture</mat-option>
+        </mat-select>         
+    </mat-form-field>
+
+    <mat-form-field style=" width: 13%; margin-left: 2%;">
+        <mat-label> Etat </mat-label>
+        <mat-select (selectionChange)="choix_etat ($event)" formControlName="etat" aria-placeholder=" "  >
+            <mat-option   value ="en cours">  En cours</mat-option>
+            <mat-option  value="Affecter">  Affecter </mat-option>
+        </mat-select>      
+    </mat-form-field>
+
+    <mat-form-field style="   margin-left: 2%;  width: 13%;">
+        <mat-label> Fournisseur </mat-label> 
+        <input matInput placeholder="fournisseur" [matKeyboard]="'de-CH'"  formControlName="fournisseur" (keyup)="filtre()"  >    
+    </mat-form-field>
+
+    
+    <mat-form-field style="margin-left: 2%; width: 13%;">
+        <mat-label> Date Facture</mat-label>
+        <input matInput [matDatepicker]="picker1"  formControlName="date_facture" (dateChange)="filtre()">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+        <mat-error *ngIf="form.get('date_facture').invalid">
+          Date facture   </mat-error>
+    </mat-form-field>
+
+    <mat-form-field style="margin-left: 2%; width: 13%;">
+        <mat-label> Date </mat-label>
+        <input matInput [matDatepicker]="picker2"  formControlName="date" (dateChange)="filtre()">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+        <mat-error *ngIf="form.get('date').invalid">
+          Date   </mat-error>
+    </mat-form-field>
+    
+ 
+  </section>
+</div>  
+
+ 
+<div class="mat-elevation-z8" style="width: 92%;"  style="height: 500px;overflow-y: scroll;">
+  <table mat-table [dataSource]="dataSource" matSort>
+       
+ 
+    <ng-container matColumnDef="modifier">
+        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+        <mat-cell *matCellDef="let element" style="text-align: center;" data-label=" ">   
+            <i class="pe-7s-pen"  (click)="edit(element.id , element.etat )"  title="edit  "></i>  
+        </mat-cell>
+    </ng-container>
+
+    <!--Colonne responsable -->
+    <ng-container matColumnDef="type">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="id"> {{element.type}}</mat-cell>
+     </ng-container>
+
+     <!--Colonne responsable -->
+     <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> id </mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="id"> {{element.id}}</mat-cell>
+     </ng-container>
+
+
+      <!--Colonne Ancien ID -->
+      <ng-container matColumnDef="utilisateur">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Utilisateur  </mat-header-cell>
+          <mat-cell *matCellDef="let element"  > {{element.id_Utilisateur.nom}} </mat-cell>
+      </ng-container>
+
+       <!--Colonne Réclamation -->
+       <ng-container matColumnDef="etat">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Etat  </mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="role"> {{element.etat}} </mat-cell>
+    </ng-container>
+
+      <!--Colonne Réclamation -->
+      <ng-container matColumnDef="total">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Total  </mat-header-cell>
+          <mat-cell *matCellDef="let element" data-label="role"> {{element.total}} </mat-cell>
+      </ng-container>
+
+      
+      <!--Colonne supprimer -->
+      <ng-container matColumnDef="sup">
+          <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+          <mat-cell *matCellDef="let element" style="text-align: center;" data-label=" ">   
+            <i class="pe-7s-print"   title="pdf" (click)="pdf(element.id)"
+            style="color: red;  margin-left: 15px;">
+        </i> 
+
+          </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10,50,100]" showFirstLastButtons></mat-paginator>
+</div>

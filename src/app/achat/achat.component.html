@@ -1,0 +1,143 @@
+   
+<div class="tab-content    ">
+  <div class="tab-pane tabs-animation fade show active" id="tab-content-1" role="tabpanel">
+    <div class="row">
+      <div class="col-md-11">
+        <div class="main-card mb-3 card" style="margin-top: 3%;">
+          <div class="card-body">
+            <section [formGroup]="form">
+              <mat-form-field class="custom-width" style="width: 15%;"  >
+                <mat-label>Fournisseur</mat-label>
+                <input matInput placeholder="ID"   [matKeyboard]="'de-CH'"  formControlName="fournisseur"  [(ngModel)]="form.fournisseur" required  >
+                <mat-error *ngIf="form.get('fournisseur').invalid">
+                  Fournisseur  </mat-error>
+               </mat-form-field>
+               <mat-form-field style=" width: 10%; margin-left: 2%;">
+                <mat-label> Type </mat-label>
+                <mat-select   [(ngModel)]="form.type"   (selectionChange)="choix_type ($event)" formControlName="type"   required>
+                    
+                  <mat-option value="reçu"> Reçu </mat-option>
+                  <mat-option value="facture"> Facture</mat-option>
+
+                    <mat-option value="bl"> BL</mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.get('type').invalid">
+                    type  </mat-error>
+               </mat-form-field>               
+          
+              <mat-form-field style=" width: 20%; margin-left: 2%;">
+                <mat-label> ID Facture </mat-label>
+                <input matInput placeholder="ID"  [matKeyboard]="'de-CH'" formControlName="id_facture" required>   
+                <mat-error *ngIf="form.get('id_facture').invalid">
+                  Réference Facture  </mat-error>
+            </mat-form-field>
+              <mat-form-field style="margin-left: 5%;">
+                <mat-label> Date</mat-label>
+                <input matInput [matDatepicker]="picker"  formControlName="date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="form.get('date').invalid">
+                  Date facture   </mat-error>
+               </mat-form-field>
+                <label style="color: red; margin-left: 10% ;"> Total : {{total}} DT  </label>          
+               <button  (click)="openDialog()" class="btn btn-primary" style="margin-left: 90%;"> Ajouter </button>
+
+            </section>
+            
+    
+          </div>
+        </div>
+        <div class="main-card mb-3 card" >
+          <div class="card-body">
+            <div class="row">
+
+            </div>
+          </div>
+          <div class="main-card mb-3 card" style="margin-left: 2%;">
+            <div class="card-body">
+
+              <div class='table' >
+                <div class='row2'>
+                  <div class='cell1' style="height: 300px;overflow-y: scroll;">
+                    <table class="table table-striped " style="height: 50%;">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>Id </th>
+                          <th>Nom </th>
+                          <th>Unité</th>
+                          <th>Qte</th>
+                          <th>Prix U HT</th>
+                          <th>TVA</th>
+                          <th>Prix U TTC</th>
+                          <th>Total TTC</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let obj of liste_produits; let i = index; ">
+                      <td><i class="pe-7s-pen" (click)="modifierobj(obj)"  title="Modifier "></i></td>
+                      <td>{{obj.id}}</td>
+                      <td>{{obj.nom}}</td>
+                      <td (click)="get_unite(obj.id)">{{obj.unite.nom}}</td>
+                      <td>{{obj.qte}}</td>
+                      <td>{{obj.prix}}</td> 
+                       <td>{{obj.tva}}</td>    
+                      <td>{{obj.prix_ttc}}</td>    
+                      <td>{{obj.total_ttc}}</td>                      
+                  
+                      <td (click)="supp(i,id)"><i class="pe-7s-trash"  title="Supprimer  "></i> </td>
+                    </tr>
+                    
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+              </div>
+              <ul>
+                <li *ngFor="let obj of liste_tva" style="color:red;font-weight:bold"> Tva {{obj.tva}} %  -- assiette tva {{obj.montant}}: Montant {{obj.val}}</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="col-md-1">
+        <nav style="height:100%; width: 100%;">
+    
+          <ul class="nav flex-column" style="margin-top: 100%;">            
+             
+            
+            <li class="nav-item" title="PDF" style="width: 100%;margin-top: 30%;">
+              <a class="nav-link" (click)="generatePDF()"><img src="./../../assets/images/pdf.png" width="140%"
+                  height="200%"></a>
+            </li>
+           
+
+            <li *ngIf="test" class="nav-item" title="Conserver" style="width: 100%;margin-top: 30%;">
+              <a class="nav-link" (click)="conserver_data()"><img src="./../../assets/images/conserver.jpg" width="140%"
+                  height="200%"></a>
+            </li>
+            <li  *ngIf="test" class="nav-item" title="Enregistrer" style="width: 100%;margin-top: 30%;">
+              <a class="nav-link" (click)="save_data()"><img src="./../../assets/images/save.jpg" width="140%"
+                  height="200%"></a>
+            </li>
+
+            <li  *ngIf="test2" class="nav-item" title="Conserver" style="width: 100%;margin-top: 30%;">
+              <a class="nav-link" (click)="modifer_be()"><img src="./../../assets/images/conserver.jpg" width="70%"
+                  height="100%"></a>
+            </li>
+
+            <li  *ngIf="test2" class="nav-item" title="Enregistrer" style="width: 100%;margin-top: 30%;">
+              <a class="nav-link" (click)=" modifer_be_affecter()"><img src="./../../assets/images/save.jpg" width="70%"
+                  height="100%"></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+    </div>
+  </div>
+</div>

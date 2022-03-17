@@ -1,0 +1,90 @@
+<h1
+    style="text-align: center;margin-top: 3%;margin-bottom: 3%; text-shadow: 2px 4px 3px rgba(0,0,0,0.3); font-size: 300%;">
+    Données</h1>
+
+
+
+<div class="tab-content" style="margin-top: 7%;">
+    <div class="tab-pane tabs-animation fade show active" id="tab-content-1" role="tabpanel">
+        <div class="row">
+            <div class="col-md-2">
+                <h2 style="margin-left: 23%;">Liste des TVA</h2>
+
+                <div class="main-card mb-8 card" style="margin-left: 2%;  height: 250px;overflow-y: scroll;">
+                    <div class="card-body">
+                        <div class='table'>
+                            <div class='row2'>
+                                <div class='cell1'>
+                                    <table class="table table-striped " height="50%">
+                                        <tbody>
+                                            <tr *ngFor="let obj of liste_tva; let i = index; ">
+                                                <td style="text-align: center">
+                                                    {{obj.taxe}}
+                                                    <i class="pe-7s-trash" (click)="supp (obj.id , i  )"
+                                                        title="Supprimer" style="color: red;  margin-left: 10px;">
+                                                    </i>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" (click)="ajouter()" class="btn btn-primary  btn-lg btn-block"
+                    style="margin-top:30px">Ajouter</button>
+            </div>
+
+            <div class="col-md-5">
+                    <div class="main-card mb-3 card">
+                        <div class="card-body">
+                            <img src="./../../../assets/images/Database-Upload.png" width="150px" height="150px" style="margin-left: 20%;">
+                            <button type="button" (click)="exporter()" class="btn btn-success"
+                                style="width: 30%;">Exporter</button>
+                            <input class="form-control" type="file" (change)="onChange($event)"
+                                style="margin-top: 2%;margin-bottom: 2%;">
+
+                            <img src="./../../../assets/images/data_replace.png" width="150px" height="150px" style="margin-left: 20%;">
+                            <button type="button" (click)="importer()" class="btn btn-success"
+                                style="width: 30%;">Importer</button>
+                        </div>      
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h2>Exercice comptable </h2> 
+                        <section [formGroup]="form">
+
+                            <mat-form-field>
+                                <mat-label> Ticket </mat-label>
+                                <input matInput placeholder="fournisseur" formControlName="ticket"  >
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <mat-label> facture </mat-label>
+                                <input matInput placeholder="fournisseur" formControlName="vente"  >
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <mat-label> Achat </mat-label>
+                                <input matInput placeholder="fournisseur" formControlName="achat"  >
+                            </mat-form-field>      
+                            <button type="button" (click)="exercice()" class="btn btn-primary  btn-lg btn-block"
+                            style="margin-top:30px">Appliquer</button>                             
+                            <h2>Réinitialiser</h2> 
+                            <button type="button" class="btn btn-danger btn-lg btn-block" (click)="user()">Utilisateur</button>
+                            <br> 
+                          
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

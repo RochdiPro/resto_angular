@@ -1,0 +1,29 @@
+ 
+img {
+    width: 15vw;
+    padding-top: -10%;
+    border-radius: 10%;
+    box-shadow: 11px 11px 11px grey;
+}
+.menu {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50% );
+}
+.inline {
+    display: inline-flex;
+    align-items: center;
+    padding: 0% 2vw;
+}
+a,
+a:hover {
+    text-decoration: none;
+    color: #52595d;
+}
+ 
+ 
+ 
+ 

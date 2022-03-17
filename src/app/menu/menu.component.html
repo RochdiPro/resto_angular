@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-md-1">
+        <div class="row">
+            <div class="col-md-12" style="margin-top:-10%" >
+                <a class="nav-link" routerLink="/menu/accueil"><img src="./../../assets/images/homme.png" title="Accuiel"
+                    width="170%" height="100%"></a>
+            </div>
+            <div class="col-md-12" style="margin-top:-10%" >
+                <a class="nav-link" (click)="vente()" > <img (click)="vente" title="Vente"
+                    src="./../../assets/images/vente.png"   width="300%" height="100%"  style="margin-left:-70%"></a>
+            </div>
+            <div class="col-md-12" style="margin-top:-10%" >
+                <a class="nav-link" (click)="tickets()"><img src="./../../assets/images/tickets.png"  style="margin-top: 10%;" title="Tickets"
+                     width="140%"  height="100%"></a>
+            </div> 
+            <div class="col-md-12" style="margin-top:-10%" >
+              <a class="nav-link" (click)="factures()"><img src="./../../assets/images/logiciel-facturation.jpg"  style="margin-top: 70%;" title="Factures"
+                            width="170%" height="100%"></a>
+            </div>
+            <div class="col-md-12" style="margin-top:-10%" >
+                <a class="nav-link" (click)="caisse()"><img src="./../../assets/images/caisse.png" width="170%"  title="Caisse"
+                    style="margin-left:-10% ;margin-top: 70%;"   height="100%"></a>
+            </div>
+            <div class="col-md-12" style="margin-top:-10%" >
+                <a class="nav-link" (click)="config()"><img src="./../../assets/images/config.png" width="270%"  style="margin-left:-50% ;margin-top: 20%;"
+                    height="100%"></a>
+            </div>
+ 
+          
+            <div class="col-md-12" style="margin-top:-10%" >
+                <a class="nav-link" (click)="achat()"><img src="./../../assets/images/achat.png" width="270%" style="margin-left:-50% ;margin-top: 0%;"
+                    height="100%"></a>
+            </div> 
+            <div class="col-md-12" style="margin-top:-10%" >
+                <a class="nav-link" (click)="lister_achat()"><img src="./../../assets/images/archive.jpg" style="margin-left:10% ;margin-top: 20%; "
+                    width="170%" height="100%"></a>
+            </div>
+            <div class="col-md-12" style="margin-top:-10%" >
+                <a class="nav-link" (click)="rapport()"><img src="./../../assets/images/rapport.png" width="170%" height="100%"  style="margin-left:10% ;margin-top: 50%; "
+                     ></a>
+            </div>
+            <div class="col-md-12" style="margin-top:-10%" >
+                <a class="nav-link" (click)="donnees()"><img src="./../../assets/images/configuration.jpg" width="150%" height="100%" style="margin-left: 20% ;margin-top: 50%; "
+                    ></a>
+            </div>
+        </div>
+
+
+        
+    </div>
+    <div class="col-md-11">
+        <router-outlet></router-outlet>
+    </div>
+</div>

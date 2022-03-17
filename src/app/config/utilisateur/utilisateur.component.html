@@ -1,0 +1,91 @@
+<h1
+  style="text-align: center;margin-top: 3%;margin-bottom: 6%; text-shadow: 2px 4px 3px rgba(0,0,0,0.3); font-size: 300%;">
+  Utilisateur</h1>
+ 
+
+  <div class="position-relative custom-control" style="margin-left: 5%;">
+  <section [formGroup]="form">
+    <mat-form-field class="custom-width" style="width: 15%;"  >
+      <mat-label>ID</mat-label>
+      <input matInput placeholder="ID" formControlName="id" (keyup)="filtre()" id="id">
+     </mat-form-field>
+    <mat-form-field class="custom-width"  style=" width: 25%; margin-left: 2%;" >
+      <mat-label>Nom</mat-label>
+      <input matInput placeholder="Nom" formControlName="nom" (keyup)="filtre()" id="id">
+     </mat-form-field>
+   
+     <mat-form-field style=" width: 25%; margin-left: 2%;">
+      <mat-label> Rôle </mat-label>
+      <mat-select (selectionChange)="choix_role($event)" formControlName="role" aria-placeholder="kg"   >
+        <mat-option value="achat"> Responsable d'achat</mat-option>
+        <mat-option value="vente">  Responsable de vente </mat-option>
+        <mat-option value="admin"> Admin </mat-option>
+      </mat-select>       
+     </mat-form-field>
+
+     
+  
+  
+    <button type="button" routerLink="/menu/config/ajouter-utilisateur" class="btn btn-primary" style="margin-left: 15%;">Ajouter</button>
+
+  </section>
+</div>  
+
+ 
+<div class="mat-elevation-z8" style="width: 98%; height: 500px;overflow-y: scroll;">
+  <table mat-table [dataSource]="dataSource" matSort>
+      <!--Colonne id -->
+      <ng-container matColumnDef="editer">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+          <mat-cell *matCellDef="let element" data-label="ID">
+              <i class="pe-7s-pen" title="modifier" (click)="modifier(element.id)" >  </i>
+          </mat-cell>
+      </ng-container>
+
+      
+      <!--Colonne responsable -->
+      <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> id </mat-header-cell>
+          <mat-cell *matCellDef="let element" data-label="id"> {{element.id}}</mat-cell>
+      </ng-container>
+
+
+      <!--Colonne Ancien ID -->
+      <ng-container matColumnDef="nom">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Nom  </mat-header-cell>
+          <mat-cell *matCellDef="let element"  > {{element.nom}} </mat-cell>
+      </ng-container>
+      <!--Colonne Réclamation -->
+      <ng-container matColumnDef="role">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Rôle  </mat-header-cell>
+          <mat-cell *matCellDef="let element" data-label="role"> {{element.role}} </mat-cell>
+      </ng-container>
+
+      <!--Colonne Réclamation -->
+      <ng-container matColumnDef="identifant">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> identifiant </mat-header-cell>
+          <mat-cell *matCellDef="let element" data-label=" identifiant"> {{element.identifant}} </mat-cell>
+      </ng-container>
+
+      <!--Colonne email -->
+      <ng-container matColumnDef="mot_de_passe">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Mot de passe </mat-header-cell>
+          <mat-cell *matCellDef="let element" data-label="Mot de passe"> {{element.mot_de_passe}} </mat-cell>
+      </ng-container> 
+
+      <!--Colonne supprimer -->
+      <ng-container matColumnDef="sup">
+          <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+          <mat-cell *matCellDef="let element" style="text-align: center;" data-label=" ">   
+              <i class="pe-7s-trash" (click)="supprimer (element.id)" title="Supprimer"
+                  style="color: red;  margin-left: 15px;">
+              </i>
+
+          </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10,50,100]" showFirstLastButtons></mat-paginator>
+</div>
