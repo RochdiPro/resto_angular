@@ -29,6 +29,7 @@ const routes: Routes = [{
     { path: 'config/factures', loadChildren: () => import('./../config/facture/facture.module').then(m => m.FactureModule) },
     { path: 'config/statistique', loadChildren: () => import('./../config/statistique/statistique.module').then(m => m.StatistiqueModule) },
     { path: 'config/donnees', loadChildren: () => import('./../config/donnees/donnees.module').then(m => m.DonneesModule) },
+    { path: 'config/composant', loadChildren: () => import('./../config/composant/composant.module').then(m => m.ComposantModule) },
 
   ]
 }]

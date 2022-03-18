@@ -38,7 +38,7 @@
 </div>  
 
  
-<div class="mat-elevation-z8" style="width: 98%; height: 500px;overflow-y: scroll;">
+<div class="mat-elevation-z8" style="width: 98%; margin-left: 1%; height: 470px;overflow-y: scroll;">
   <table mat-table [dataSource]="dataSource" matSort>
       <!--Colonne id -->
       <ng-container matColumnDef="editer">
@@ -120,5 +120,5 @@
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[10,50,100]" showFirstLastButtons></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[6,50,100]" showFirstLastButtons></mat-paginator>
 </div>

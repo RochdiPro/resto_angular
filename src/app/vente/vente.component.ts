@@ -34,7 +34,7 @@ export class VenteComponent implements OnInit {
   clt: any = "Passager";
   nticket: any = "00001";
   page = 0;
-  size = 15;
+  size = 16;
   total: any = 0;
   benifice: any = 0;
   valide: any = false
@@ -72,6 +72,7 @@ export class VenteComponent implements OnInit {
   table: any = [];
   user: any; session: any;
   liste_tva: any = [];
+  liste_couleur:any = ["#0FA3B1",  "#B5E2FA" ,"#F9F7F3","#EDDEA4","#F7A072"  , "#FFE900"     ,  "#f6b879"  , "#ED7F10","#b3e167", "#f53d69" ,"#ffcb60","#a3aaf9","#ff8080" ]
 
   constructor(private plt: Platform, public dialog: MatDialog, public service: ServiceService, private route: ActivatedRoute, private router: Router, private datePipe: DatePipe, private printer: Printer) {
 
@@ -85,10 +86,11 @@ export class VenteComponent implements OnInit {
       prix_achat: new FormControl(''),
       prix_vente: new FormControl(''),
     });
+ 
     this.get_categories();
     this.get_produits();
     this.choix = "";
-  }
+   }
 
   // lister les produit et ajouter le valeur  tva 
   get_produits() {
@@ -309,9 +311,11 @@ export class VenteComponent implements OnInit {
   }
 
   // filtre pour les categorie
-  filtre_cat(categorie: any, ch: any) {
+  couleur_index:any ="";
+  filtre_cat(categorie: any, ch: any , index:any) {
     this.choix = categorie;
     this.categorie = ch
+    this.couleur_index=this.liste_couleur[index]
     this.filtre();
   }
 

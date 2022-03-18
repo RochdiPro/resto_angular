@@ -1,0 +1,57 @@
+<h1
+    style="text-align: center;margin-top: 3%;margin-bottom: 3%; text-shadow: 2px 4px 3px rgba(0,0,0,0.3); font-size: 300%;">
+    les composants </h1>
+
+
+
+<div class="tab-content" style="margin-top: 7%;">
+    <div class="tab-pane tabs-animation fade show active" id="tab-content-1" role="tabpanel">
+        <div class="row">
+            <div class="col-md-12"> 
+                <h2 style="margin-left: 5%;">Liste des Composants</h2> 
+                <div class="main-card mb-3 card" style="margin-left: 0%;">
+                    <button class="btn btn-success" style="margin-left:80%;" type="submit">Ajouter</button>
+
+                    <div class="card-body">
+
+                        <div class='table'>
+                            <div class='row2'>
+                                <div class='cell1'>
+                                    <table class="table table-striped " height="50%">
+                                        <thead>
+                                            <tr>
+                                                <th>id</th>
+                                                <th>Nom</th>
+                                                <th>Categorie</th>
+                                                <th>Description</th>
+                                                <th> </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let obj of liste_balance; let i = index; ">
+                                                <td>
+                                                    <i class="pe-7s-pen" (click)="modifer_balance(i,obj.id,obj.nom)"
+                                                        title="Modifier  "></i>
+                                                </td>
+                                                <td>
+                                                    {{obj.code}}
+                                                </td>
+                                                <td>
+                                                    {{obj.code}}
+                                                </td>
+                                                <td>
+                                                    {{obj.prix}}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div> 
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>

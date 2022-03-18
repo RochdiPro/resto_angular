@@ -4,6 +4,16 @@ a {
     text-decoration: none;
     border-radius: 10%;
 }
+
+.img{
+    background-image: url('./../../../assets/images/22.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    //height: 50%;
+    width: 90%; 
+    font-family: 'Numans', sans-serif;
+    }
+
 .image {
     width: 15vw;
     padding-top: -10%;
